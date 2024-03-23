@@ -1,52 +1,47 @@
 const site = window.location.hostname;
 
-// alert("Injector - Javascript has been injected into: " + site);
-
-// Add Custom CSS - Function
-// const Add_Custom_Style = css => document.head.appendChild(document.createElement("style")).innerHTML = css
-
 // Create Custom Element - Function
 function Create_Custom_Element(tag, attr_tag, attr_name, value) {
     const custom_element = document.createElement(tag)
     custom_element.setAttribute(attr_tag, attr_name)
-    // if (value !== 'Background Modal'){
-    //     custom_element.innerHTML = value
-    // }
+
+    if (value){
+        if (tag == 'img'){
+            custom_element.src = value;
+        }
+        else {
+            custom_element.innerHTML = value;
+        }
+    }
+
     document.body.append(custom_element)
     return custom_element
 }
 
-elem1 = Create_Custom_Element(
-    "div",
-    "id",
-    "modal",
-    "Background Modal",
-);
+// Element Declarations 
+modal = Create_Custom_Element("div", "id", "modal");
 
-elem2 = Create_Custom_Element(
-    "div",
-    "id",
-    "banner-overlay",
-    "Creative Extension",
-);
+bannerOverlay = Create_Custom_Element("div", "id", "banner-overlay");
 
-elem3 = Create_Custom_Element(
-    "div",
-    "id",
-    "banner-text",
-    "Creative Extension",
-);
-elem3.innerHTML = "Creative Extension";
+bannerContent = Create_Custom_Element("div", "id", "banner-text", "Creative Extension");
 
-// Create a new image element 
-var icon = document.createElement('img'); 
- 
-// Set the src attribute to the URL of the image and add its css
-icon.src = 'chrome-extension://dnbeehphiobpmdljamldjfoihekbdelo/assets/leafIcon.png'; 
-icon.setAttribute("id", "icon")
- 
-// Append the image to an existing element in the HTML document 
-elem2.appendChild(icon);
-elem2.appendChild(elem3);
+panRight = Create_Custom_Element("div", "id", "panRight");
 
-elem1.appendChild(elem2);
+panLeft = Create_Custom_Element("div", "id", "panLeft");
+
+addToCartButton = Create_Custom_Element("div", "id", "button");
+
+buttonText = Create_Custom_Element("div", "id", "button-text", "Add to Cart");
+
+leafImage = Create_Custom_Element("img", "id", "icon", 'chrome-extension://dnbeehphiobpmdljamldjfoihekbdelo/assets/leafIcon.png');
+
+cartImage = Create_Custom_Element("img", "id", "cart", 'chrome-extension://dnbeehphiobpmdljamldjfoihekbdelo/assets/cartIcon.png');
+
+// Might be able to rework this into some sort of recursive function that appends all the elements to eachother in order - wait until working on the next bit below the banner before trying this
+bannerOverlay.appendChild(leafImage);
+bannerOverlay.appendChild(bannerContent);
+addToCartButton.appendChild(cartImage);
+addToCartButton.appendChild(buttonText);
+
+modal.appendChild(bannerOverlay);
+modal.appendChild(addToCartButton);
