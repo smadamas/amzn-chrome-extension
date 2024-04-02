@@ -25,11 +25,20 @@ bannerOverlay = Create_Custom_Element("div", "id", "banner-overlay");
 
 bannerContent = Create_Custom_Element("div", "id", "banner-text", "Creative Extension");
 
-panRight = Create_Custom_Element("div", "id", "panRight");
+panRight = Create_Custom_Element("img", "id", "panRight", 'chrome-extension://dnbeehphiobpmdljamldjfoihekbdelo/assets/rightPan.png');
 
-panLeft = Create_Custom_Element("div", "id", "panLeft");
+panLeft = Create_Custom_Element("img", "id", "panLeft", 'chrome-extension://dnbeehphiobpmdljamldjfoihekbdelo/assets/leftPan.png');
+
+productTile = Create_Custom_Element("div", "id", "product-tile");
+
+imageSlot = Create_Custom_Element("img", "id", "image-slot", 'chrome-extension://dnbeehphiobpmdljamldjfoihekbdelo/assets/leafIcon.png');
+
+// Needs to have the caption truncated when the caption is too long and ... added
+captionSlot = Create_Custom_Element("div", "id", "caption", "Some wordy caption with lots of text written blah blah blah ahahah here we go n with lots of text written blah blah blah a");
 
 addToCartButton = Create_Custom_Element("div", "id", "button");
+
+carousel = Create_Custom_Element("div", "id", "carousel");
 
 buttonText = Create_Custom_Element("div", "id", "button-text", "Add to Cart");
 
@@ -42,6 +51,12 @@ bannerOverlay.appendChild(leafImage);
 bannerOverlay.appendChild(bannerContent);
 addToCartButton.appendChild(cartImage);
 addToCartButton.appendChild(buttonText);
+productTile.appendChild(imageSlot);
+productTile.appendChild(captionSlot);
+carousel.appendChild(panLeft);
+carousel.appendChild(productTile);
+carousel.appendChild(panRight);
 
 modal.appendChild(bannerOverlay);
+modal.appendChild(carousel);
 modal.appendChild(addToCartButton);
